@@ -1,0 +1,698 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #ffff;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+a:focus,
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Shared chrome (navbar + hero pattern) kept in sync with home.css so this
+   page renders correctly even when it's the first page a visitor lands on. */
+
+.navbar {
+    margin-left: 4.5rem;
+    margin-right: 4.5rem;
+    top: 0;
+    padding: 0.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 0.1rem #e0e0e0;
+    z-index: 100;
+    position: relative;
+}
+
+.logo-div {
+    display: flex;
+    align-items: center;
+    height: 7.5rem;
+    margin-left: 2rem;
+}
+
+.logo-div-link {
+    width: 12rem;
+    height: 3.7rem;
+}
+
+.logo-div .logo-div-link img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.nav-links ul {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+    margin-right: 1rem;
+}
+
+.nav-links li a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #000;
+    font-family: 'Poppins';
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background-color: #808080;
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+.nav-links li a:hover {
+    color: #808080;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Section-1 (hero) */
+
+.space-div {
+    height: 4rem;
+}
+
+.section-1 {
+    margin-right: 4.5rem;
+    margin-left: 4.5rem;
+}
+
+.icon-div img {
+    height: 2rem;
+    width: 2rem;
+}
+
+.icon-div {
+    display: flex;
+    justify-content: center;
+}
+
+.icon-content {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 1rem;
+    background-color: #f5f5f5;
+    border-radius: 0.5rem;
+}
+
+.icon-content span {
+    font-size: 1.6rem;
+    margin-top: 0.25rem;
+    color: #808080;
+}
+
+.tagline {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.tagline h1 {
+    font-size: 4rem;
+    font-weight: bolder;
+}
+
+.tagline-main p {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.2rem;
+    font-size: 2rem;
+    color: #808080;
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(3rem);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slide-up.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* ============================= */
+/* Request a Quote page layout    */
+/* ============================= */
+
+.section-2-quote {
+    margin: 4rem 4.5rem 6rem 4.5rem;
+}
+
+.quote-layout {
+    display: grid;
+    grid-template-columns: minmax(28rem, 38rem) 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.quote-info-col h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2.4rem;
+}
+
+.quote-info-col h2 span {
+    color: #808080;
+}
+
+.why-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.2rem;
+    margin-bottom: 3.5rem;
+}
+
+.why-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.why-check {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #dee0ff;
+    color: #0000cc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.why-item h4 {
+    font-size: 1.7rem;
+    margin-bottom: 0.4rem;
+}
+
+.why-item p {
+    font-size: 1.4rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.quote-links {
+    background-color: #f5f5f5;
+    border-radius: 1rem;
+    padding: 2.2rem;
+}
+
+.quote-links p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.quote-links a {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #0000cc;
+    text-decoration: none;
+    margin-bottom: 0.8rem;
+}
+
+.quote-links a:hover {
+    text-decoration: underline;
+}
+
+.quote-links a:last-child {
+    margin-bottom: 0;
+}
+
+/* Form column — card wrapper */
+
+.quote-form-col {
+    background-color: #f8f8f8;
+    border-radius: 1.2rem;
+    overflow: hidden;
+}
+
+.quote-details-div {
+    padding-bottom: 1rem;
+}
+
+.quote-details-div h5 {
+    padding: 2.5rem 3rem;
+    text-align: center;
+    font-size: 1.9rem;
+    letter-spacing: 0.1rem;
+    border-bottom: solid #808080 0.1rem;
+}
+
+.quote-details-div form {
+    padding: 0.5rem 0;
+}
+
+/* Field styling replicated from the site's existing contact form so this
+   page feels identical, even though it lives in its own scoped stylesheet. */
+
+.name-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0 3rem;
+    margin-top: 1.6rem;
+}
+
+.name-div div {
+    flex: 1;
+}
+
+.quote-same-layout {
+    padding: 1.6rem 3rem 0 3rem;
+}
+
+.quote-same-layout input,
+.quote-same-layout select,
+.name-div input,
+.name-div select {
+    width: 100%;
+}
+
+.quote-details-div span {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.quote-details-div input,
+.quote-details-div select {
+    display: block;
+    border: 0.1rem solid #808080;
+    outline: none;
+    padding: 1rem 0.8rem;
+    margin-top: 0.8rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    border-radius: 0.4rem;
+    background-color: #fff;
+}
+
+.quote-details-div input:focus,
+.quote-details-div select:focus {
+    border: 0.1rem solid #0000cc;
+}
+
+.text-area-div {
+    padding: 1.6rem 3rem 0 3rem;
+}
+
+.text-area-div textarea {
+    resize: none;
+    display: block;
+    margin-top: 0.8rem;
+    width: 100%;
+    padding: 1rem 0.8rem;
+    height: 12rem;
+    outline: none;
+    border: 0.1rem solid #808080;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    border-radius: 0.4rem;
+}
+
+.text-area-div textarea:focus {
+    border: 0.1rem solid #0000cc;
+}
+
+/* File upload */
+
+.file-upload-div {
+    padding: 1.6rem 3rem 0 3rem;
+}
+
+.file-upload-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.8rem;
+    cursor: pointer;
+}
+
+.file-upload-btn {
+    flex-shrink: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #0000cc;
+    background-color: #dee0ff;
+    padding: 0.9rem 1.4rem;
+    border-radius: 0.4rem;
+    white-space: nowrap;
+}
+
+.file-upload-name {
+    font-size: 1.3rem;
+    color: #808080;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-upload-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.file-upload-hint {
+    font-size: 1.2rem;
+    color: #808080;
+    margin-top: 0.8rem;
+    font-weight: 400;
+}
+
+.contact-btn-div {
+    padding: 2.4rem 3rem 0.5rem 3rem;
+}
+
+.submit-btn {
+    padding: 1.5rem 1rem;
+    width: 100%;
+    background-color: #0000cc;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:active,
+.submit-btn:hover {
+    background-color: #000;
+}
+
+/* Success / error / loading states */
+
+.message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40rem;
+}
+
+.success-message,
+.error-message {
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    animation: quoteFadeIn 0.5s ease;
+}
+
+.success-message h3 {
+    color: green;
+    font-size: 2.5rem;
+    margin-top: 1rem;
+}
+
+.success-message p {
+    font-size: 1.6rem;
+    margin-top: 0.8rem;
+}
+
+.error-message h3 {
+    color: red;
+    font-size: 2.5rem;
+    margin-top: 1rem;
+}
+
+.error-message p {
+    font-size: 1.5rem;
+    margin-top: 0.8rem;
+}
+
+@keyframes quoteFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.sam-btn {
+    padding: 1rem 1.6rem;
+    color: #fff;
+    background-color: green;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.7rem;
+    cursor: pointer;
+    margin-top: 1.4rem;
+}
+
+.sam-btn:hover {
+    background-color: #dee0ff;
+    color: green;
+}
+
+.try-again-btn {
+    padding: 1rem 1.6rem;
+    color: #fff;
+    background-color: red;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.7rem;
+    cursor: pointer;
+    margin-top: 1.4rem;
+}
+
+.try-again-btn:hover {
+    background-color: #dee0ff;
+    color: red;
+}
+
+/* Loader animation (identical to the site's existing contact form loader) */
+
+.loader-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40rem;
+}
+
+.loader-text {
+    text-align: center;
+    animation: quoteFadeIn 0.5s ease;
+}
+
+.loader-text h3 {
+    font-size: 1.6rem;
+    letter-spacing: 0.4rem;
+    color: #0000cc;
+    font-weight: bold;
+    display: block;
+}
+
+.loader-con {
+    position: relative;
+    width: 50%;
+    height: 100px;
+    overflow: hidden;
+    padding: 2rem;
+    width: 30rem;
+}
+
+.pfile {
+    position: absolute;
+    bottom: 25px;
+    width: 40px;
+    height: 50px;
+    background-color: #0000cc;
+    border-radius: 4px;
+    transform-origin: center;
+    animation: flyRight 3s ease-in-out infinite;
+    opacity: 0;
+    animation-delay: calc(var(--i) * 0.6s);
+}
+
+.pfile::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 28px;
+    height: 4px;
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+
+.pfile::after {
+    content: "";
+    position: absolute;
+    top: 13px;
+    left: 6px;
+    width: 18px;
+    height: 4px;
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+
+@keyframes flyRight {
+    0% {
+        left: -10%;
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        left: 45%;
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        left: 100%;
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+
+/* ============================= */
+/* Responsive */
+/* ============================= */
+
+@media (max-width: 768px) {
+    .navbar {
+        margin: 0 3rem 0 3rem;
+    }
+
+    .logo-div {
+        margin: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        max-height: 0;
+        background: #fff;
+        transition: max-height 0.3s ease-out;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        max-height: 500px;
+        transition: max-height 0.3s ease-in;
+    }
+
+    .nav-links ul {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        color: #000;
+        font-size: 1.2rem;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .tagline h1 {
+        font-size: 2rem;
+    }
+
+    .tagline-main p {
+        font-size: 1.4rem;
+    }
+
+    .section-2-quote {
+        margin: 3rem 2rem 4rem 2rem;
+    }
+
+    .quote-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .name-div {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .name-div div {
+        margin-top: 1.6rem;
+    }
+
+    .name-div:first-of-type div:first-child {
+        margin-top: 0;
+    }
+}

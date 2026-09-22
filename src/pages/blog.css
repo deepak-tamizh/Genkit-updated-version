@@ -1,0 +1,593 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #ffff;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+a:focus,
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Shared chrome (navbar + hero pattern) kept in sync with home.css so this
+   page renders correctly even when it's the first page a visitor lands on. */
+
+.navbar {
+    margin-left: 4.5rem;
+    margin-right: 4.5rem;
+    top: 0;
+    padding: 0.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 0.1rem #e0e0e0;
+    z-index: 100;
+    position: relative;
+}
+
+.logo-div {
+    display: flex;
+    align-items: center;
+    height: 7.5rem;
+    margin-left: 2rem;
+}
+
+.logo-div-link {
+    width: 12rem;
+    height: 3.7rem;
+}
+
+.logo-div .logo-div-link img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.nav-links ul {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+    margin-right: 1rem;
+}
+
+.nav-links li a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #000;
+    font-family: 'Poppins';
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background-color: #808080;
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+.nav-links li a:hover {
+    color: #808080;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Section-1 (hero) */
+
+.space-div {
+    height: 4rem;
+}
+
+.section-1 {
+    margin-right: 4.5rem;
+    margin-left: 4.5rem;
+}
+
+.icon-div img {
+    height: 2rem;
+    width: 2rem;
+}
+
+.icon-div {
+    display: flex;
+    justify-content: center;
+}
+
+.icon-content {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 1rem;
+    background-color: #f5f5f5;
+    border-radius: 0.5rem;
+}
+
+.icon-content span {
+    font-size: 1.6rem;
+    margin-top: 0.25rem;
+    color: #808080;
+}
+
+.tagline {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.tagline h1 {
+    font-size: 4rem;
+    font-weight: bolder;
+}
+
+.tagline-main p {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.2rem;
+    font-size: 2rem;
+    color: #808080;
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(3rem);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slide-up.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ============================= */
+/* Blog listing page              */
+/* ============================= */
+
+.section-2-blog {
+    margin: 4rem 4.5rem 6rem 4.5rem;
+}
+
+.filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3.5rem;
+}
+
+.filter-tab {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 0.9rem 1.8rem;
+    border-radius: 3rem;
+    border: 0.1rem solid #e0e0e0;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-tab:hover {
+    border-color: #0000cc;
+    color: #0000cc;
+}
+
+.filter-tab.active {
+    background-color: #0000cc;
+    border-color: #0000cc;
+    color: #fff;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(32rem, 1fr));
+    gap: 3rem;
+}
+
+.no-results {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #808080;
+    padding: 4rem 0;
+}
+
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.14);
+}
+
+.blog-card-thumb {
+    position: relative;
+}
+
+.blog-thumb-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.blog-category-pill {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: #fff;
+    border: 0.1rem solid;
+    padding: 0.35rem 1rem;
+    border-radius: 2rem;
+}
+
+.blog-card-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.blog-card-body h4 {
+    font-size: 1.9rem;
+    line-height: 1.4;
+}
+
+.blog-card-body p {
+    font-size: 1.4rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.blog-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.2rem;
+    color: #808080;
+    padding-top: 0.6rem;
+    border-top: 0.1rem solid #f1f1f1;
+    margin-top: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.meta-dot {
+    color: #ccc;
+}
+
+/* ============================= */
+/* Blog post detail page          */
+/* ============================= */
+
+.blog-post-thumb-wrap {
+    margin: 0 4.5rem 3rem 4.5rem;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    max-width: 90rem;
+}
+
+.blog-post-thumb-wrap .blog-thumb-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.blog-post-body {
+    margin: 0 4.5rem 4rem 4.5rem;
+    max-width: 78rem;
+}
+
+.blog-post-section {
+    margin-bottom: 3.2rem;
+}
+
+.blog-post-section h2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+}
+
+.blog-post-section p {
+    font-size: 1.6rem;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+}
+
+/* Prev / next post nav */
+
+.blog-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: 4rem 4.5rem;
+    padding-top: 3rem;
+    border-top: 0.1rem solid #e0e0e0;
+    max-width: 90rem;
+}
+
+.blog-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: inherit;
+    max-width: 32%;
+}
+
+.blog-nav-link-right {
+    align-items: flex-end;
+    text-align: right;
+}
+
+.blog-nav-label {
+    font-size: 1.3rem;
+    color: #808080;
+    font-weight: 600;
+}
+
+.blog-nav-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111;
+    transition: color 0.2s ease;
+    line-height: 1.4;
+}
+
+.blog-nav-link:hover .blog-nav-name {
+    color: #0000cc;
+}
+
+.blog-nav-all {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #0000cc;
+    padding: 1rem 1.8rem;
+    border-radius: 0.6rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+
+.blog-nav-all:hover {
+    background-color: #000;
+}
+
+/* Closing CTA */
+
+.section-3-blog {
+    margin: 3rem 4.5rem 6rem 4.5rem;
+}
+
+.cta-card {
+    background-color: #f5f5f5;
+    border-radius: 1.2rem;
+    padding: 5rem 3rem;
+    text-align: center;
+}
+
+.cta-card h2 {
+    font-size: 3.2rem;
+    font-weight: bold;
+}
+
+.cta-card h2 span {
+    color: #808080;
+}
+
+.cta-card p {
+    font-size: 1.6rem;
+    color: #555;
+    margin-top: 1.2rem;
+}
+
+.cta-card .btn-contact {
+    margin-top: 2.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1.2rem 2.6rem;
+    border: none;
+    border-radius: 0.6rem;
+    color: #fff;
+    background-color: #010ed0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cta-card .btn-contact:hover {
+    background-color: #000;
+}
+
+.not-found-cta {
+    margin: 3rem 4.5rem 6rem 4.5rem;
+    text-align: center;
+}
+
+.not-found-cta .btn-contact {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1.2rem 2.6rem;
+    border: none;
+    border-radius: 0.6rem;
+    color: #fff;
+    background-color: #010ed0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.not-found-cta .btn-contact:hover {
+    background-color: #000;
+}
+
+
+/* ============================= */
+/* Responsive */
+/* ============================= */
+
+@media (max-width: 768px) {
+    .navbar {
+        margin: 0 3rem 0 3rem;
+    }
+
+    .logo-div {
+        margin: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        max-height: 0;
+        background: #fff;
+        transition: max-height 0.3s ease-out;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        max-height: 500px;
+        transition: max-height 0.3s ease-in;
+    }
+
+    .nav-links ul {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        color: #000;
+        font-size: 1.2rem;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .tagline h1 {
+        font-size: 2rem;
+    }
+
+    .tagline-main p {
+        font-size: 1.4rem;
+    }
+
+    .section-2-blog {
+        margin: 3rem 2rem 4rem 2rem;
+    }
+
+    .filter-tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .filter-tab {
+        flex-shrink: 0;
+        font-size: 1.2rem;
+        padding: 0.7rem 1.4rem;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .blog-post-thumb-wrap {
+        margin: 0 2rem 2rem 2rem;
+    }
+
+    .blog-post-body {
+        margin: 0 2rem 3rem 2rem;
+    }
+
+    .blog-post-section h2 {
+        font-size: 1.9rem;
+    }
+
+    .blog-post-section p {
+        font-size: 1.4rem;
+    }
+
+    .blog-nav {
+        flex-direction: column;
+        align-items: stretch;
+        margin: 3rem 2rem;
+        gap: 1.5rem;
+    }
+
+    .blog-nav-link,
+    .blog-nav-link-right {
+        max-width: 100%;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .blog-nav-all {
+        text-align: center;
+    }
+
+    .section-3-blog {
+        margin: 2rem 2rem 4rem 2rem;
+    }
+
+    .cta-card {
+        padding: 3.5rem 2rem;
+    }
+
+    .cta-card h2 {
+        font-size: 2.4rem;
+    }
+}
